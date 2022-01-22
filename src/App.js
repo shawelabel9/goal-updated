@@ -5,6 +5,9 @@ import {useState, useEffect} from 'react'
 function App() {
 
   const [clubs,setClubs] = useState([])
+  const [input,setInput] = useState([])
+  const [searchWord,setSearchWord] = useState([])
+
 
   useEffect(()=>{
     const fetchClubs = async () => {
@@ -15,11 +18,25 @@ function App() {
     }
     fetchClubs()
   },[])
-
+  
+  
+ 
+  const handleChange = (item) => {
+      setInput(item)
+      if(input.length !== ''){
+        const filteredData = clubs.filter((items) => {
+          if(items.name.toLowerCase().includes(item.toLowerCase())){
+            return items
+          }
+        })
+        
+      setSearchWord(filteredData)}
+       
+  }
   return(
     <div>
-    <Header/>
-    <Clubs clubs = {clubs} />
+    <Header  onSearch={handleChange}/>
+    <Clubs clubs = {clubs} term= {searchWord} input = {input}/>
     </div>
   )
   
