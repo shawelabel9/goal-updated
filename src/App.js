@@ -1,6 +1,7 @@
-import Header from './Header.js'
 import Clubs from './Clubs.js'
 import {useState, useEffect} from 'react'
+
+
 
 function App() {
 
@@ -35,8 +36,7 @@ function App() {
   }
   return(
     <div>
-    <Header  onSearch={handleChange}/>
-    <Clubs clubs = {clubs} term= {searchWord} input = {input}/>
+      <Clubs clubs = {clubs} term= {searchWord} input = {input} handleChange={handleChange}/>
     </div>
   )
   
